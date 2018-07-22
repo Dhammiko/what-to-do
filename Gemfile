@@ -27,13 +27,14 @@ gem 'curb'
 gem 'haml'
 gem 'bootstrap-datepicker-rails'
 
+gem 'web-console', '~> 2.0', group: :development
+
 group :development, :test do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
   gem 'rspec'
   gem 'webmock'
   gem 'factory_bot'
   gem 'pry'
   gem 'pry-nav'
-  gem 'jasmine'
+  gem 'jasmine-rails'
 end
