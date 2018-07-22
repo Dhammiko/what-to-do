@@ -1,9 +1,9 @@
-require_relative '../lib/what_to_do.rb'
-require_relative '../lib/event.rb'
-require_relative '../lib/venue.rb'
-require_relative '../lib/forecast.rb'
-require_relative '../lib/event_brite_client.rb'
-require_relative '../lib/dark_sky_client.rb'
+require 'what_to_do.rb'
+require 'event.rb'
+require 'venue.rb'
+require 'forecast.rb'
+require 'event_brite_client.rb'
+require 'dark_sky_client.rb'
 
 require 'net/http'
 
