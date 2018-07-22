@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   rescue_from Exceptions::InvalidDate, with: :invalid_date
 
   def index
-    @events = WhatToDo.new(params["params"]).get_events
+    @events = WhatToDo.new(params).get_events
   end
 
   private
@@ -14,7 +14,7 @@ class EventsController < ApplicationController
   end
 
   def invalid_date
-    flash[:error] = "Sorry, we can't understand that date format."
+    flash[:error] = "Sorry, we can't understand that date format. Give it another shot!"
     redirect_to(:back)
   end
 end

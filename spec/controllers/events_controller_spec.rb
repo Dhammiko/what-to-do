@@ -7,10 +7,10 @@ describe EventsController do
     let(:whattodo) { double }
 
     it 'assigns @events' do
-      allow(WhatToDo).to receive(:new).with(params).and_return(whattodo)
+      allow(WhatToDo).to receive(:new).with(anything).and_return(whattodo)
       allow(whattodo).to receive_messages(get_events: [event])
       
-      get :index, params: params 
+      get :index, params
 
       expect(assigns(:events)).to eq([event])
     end
@@ -22,13 +22,13 @@ describe EventsController do
       before { request.env["HTTP_REFERER"] = referer }
 
       it 'sets an error message if InvalidZip is raised' do
-        get :index, params: params
+        get :index, params
 
         expect(flash[:error]).to be_present
       end
 
       it 'sets an error message if InvalidZip is raised' do
-        get :index, params: params
+        get :index, params
 
         expect(response).to redirect_to(referer)
       end
@@ -39,7 +39,7 @@ describe EventsController do
       before { request.env["HTTP_REFERER"] = referer }
 
       it 'sets an error message if InvalidDate is raised' do
-        get :index, params: params
+        get :index, params
 
         expect(flash[:error]).to be_present
       end

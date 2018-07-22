@@ -40,7 +40,7 @@ class WhatToDo
   end
 
   def get_date(date_string)
-    date_string ?  DateTime.parse(date_string) : DateTime.now
+    date_string.present? ? DateTime.parse(date_string) : DateTime.now
   rescue ArgumentError
     raise Exceptions::InvalidDate
   end
