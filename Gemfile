@@ -35,4 +35,5 @@ group :development, :test do
   gem 'factory_bot'
   gem 'pry'
   gem 'pry-nav'
+  gem 'jasmine'
 end
