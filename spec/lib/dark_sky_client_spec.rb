@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe DarkSkyClient do
   context "hitting the dark sky api" do

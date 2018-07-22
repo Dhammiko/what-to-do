@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Forecast do
   subject { Forecast.new(forecast_json: {}.to_json, datetime: DateTime.now) }

@@ -31,7 +31,7 @@ gem 'web-console', '~> 2.0', group: :development
 
 group :development, :test do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'rspec'
+  gem 'rspec-rails'
   gem 'webmock'
   gem 'factory_bot'
   gem 'pry'
