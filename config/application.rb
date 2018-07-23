@@ -28,4 +28,6 @@ class Application < Rails::Application
   # config.active_record.raise_in_transactional_callbacks = true
 
   config.autoload_paths += %W[#{config.root}/lib]
+  config.eager_load_paths += %W[#{config.root}/lib/what_to_do]
+  config.eager_load_paths += %W[#{config.root}/lib/client]
 end
