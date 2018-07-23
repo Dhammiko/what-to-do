@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe DarkSkyClient do
+describe Client::DarkSkyClient do
   context 'hitting the dark sky api' do
     describe '#fetch_weather_json' do
       let(:token) { 'token' }
@@ -16,7 +16,7 @@ describe DarkSkyClient do
         allow(subject).to receive(:epochtime).and_return(epochtime)
       end
 
-      subject { DarkSkyClient.new(latitude: latitude, longitude: longitude, datetime: 'last thursday') }
+      subject { Client::DarkSkyClient.new(latitude: latitude, longitude: longitude, datetime: 'last thursday') }
       it 'sends the assembled URL to curb' do
         expect(Curl::Easy).to receive(:new).with(url).and_call_original
         subject.fetch_weather_json

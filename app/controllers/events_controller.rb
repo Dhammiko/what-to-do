@@ -5,7 +5,7 @@ class EventsController < ApplicationController
 
   def index
     persist_session
-    @events = WhatToDo.new(user_params).get_events
+    @events = WhatToDo::EventGetter.new(user_params).get_events
   end
 
   private

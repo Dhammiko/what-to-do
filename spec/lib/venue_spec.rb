@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Venue do
+describe WhatToDo::Venue do
   let(:latitude) { '3' }
   let(:longitude) { '-7' }
   let(:venue_name) { 'fraggle hall' }
@@ -12,7 +12,7 @@ describe Venue do
       address: { localized_multi_line_address_display: [venue_address] } }.to_json
   end
 
-  subject { Venue.new(JSON.parse(venue_json)) }
+  subject { WhatToDo::Venue.new(JSON.parse(venue_json)) }
 
   describe '#name' do
     it 'extracts the venue name' do

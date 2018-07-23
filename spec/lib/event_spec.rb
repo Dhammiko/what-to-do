@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Event do
+describe WhatToDo::Event do
   let(:name) { 'an awesome event' }
   let(:date) { '2018-07-07T11:00:00' }
   let(:venue_name) { 'the darrell ampitheater' }
@@ -14,12 +14,12 @@ describe Event do
   end
 
   before do
-    allow_any_instance_of(Event).to receive(:dsclient).and_return(double)
-    allow_any_instance_of(Event).to receive(:forecast).and_return(forecast)
-    allow_any_instance_of(Event).to receive(:venue).and_return(venue)
+    allow_any_instance_of(WhatToDo::Event).to receive(:dsclient).and_return(double)
+    allow_any_instance_of(WhatToDo::Event).to receive(:forecast).and_return(forecast)
+    allow_any_instance_of(WhatToDo::Event).to receive(:venue).and_return(venue)
   end
 
-  subject { Event.new(event_json) }
+  subject { WhatToDo::Event.new(event_json) }
 
   describe '#load' do
     before { allow(subject).to receive(:rainy_event?).and_return(false) }
