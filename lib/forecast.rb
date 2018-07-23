@@ -6,19 +6,15 @@ class Forecast
     @datetime = datetime
   end
 
-  def to_s
-    forecast
-  end
-
   def rain?
     !forecast.scan(/rain/i)[0].nil?
   end
 
-  private
-
   def forecast
     forecast_json['hourly']['data'][hour_of_day]['summary']
   end  
+
+  private
   
   def hour_of_day
     DateTime.parse(datetime).strftime('%H').to_i
