@@ -7,8 +7,12 @@ class Event
 
   def initialize(event_json)
     @event_json = event_json
+  end
+
+  def load
     venue
     forecast
+    self
   end
 
   def name
