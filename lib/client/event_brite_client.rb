@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Client
   # a client for accessing event brite event data
   class EventBriteClient

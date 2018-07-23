@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WhatToDo
   # an object to hold the weater forecast for a venue at a certain date
   class Forecast

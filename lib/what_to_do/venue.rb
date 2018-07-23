@@ -1,5 +1,7 @@
-# an object tto hold information about the venue for an event
+# frozen_string_literal: true
+
 module WhatToDo
+  # an object tto hold information about the venue for an event
   class Venue
     attr_reader :venue_json
 

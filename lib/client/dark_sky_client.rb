@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Client
   # acess the dark sky API
   class DarkSkyClient

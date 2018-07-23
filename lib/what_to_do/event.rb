@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WhatToDo
   # object for holding event brite event data and mapping it to a venue and the forecast for that venue
   class Event

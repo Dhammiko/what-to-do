@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # events controller
 class EventsController < ApplicationController
   rescue_from Exceptions::InvalidZip, with: :invalid_zip

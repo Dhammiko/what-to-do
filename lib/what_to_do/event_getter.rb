@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WhatToDo
   # given a zipcode and date get interesting event objects
   class EventGetter
