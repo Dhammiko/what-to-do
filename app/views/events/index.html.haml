@@ -7,6 +7,6 @@
       %p displaying #{pluralize(@events.count,"event")} near #{session["zipcode"]} on or after #{session["datetime"]}
       = render partial: 'event_item', collection: @events, as: :event
   - else
-    %p well this is a bummer, we didn't find any events near #{session["zipcode"]} around #{session["datetime"]} that will have clear skies.  Maybe try again later
+    %p.ohno well this is a bummer, we didn't find any events near #{session["zipcode"]} around #{session["datetime"]} that will have clear skies.  Maybe try again later.
     
   = render partial: 'shared/footer'
