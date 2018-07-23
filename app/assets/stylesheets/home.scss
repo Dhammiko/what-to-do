@@ -35,6 +35,7 @@ body {
       padding-left: 5%;
       padding-right: 5%;
       color: gray;
+      overflow: auto;
 
       hr {
         width: 15%;
@@ -73,6 +74,11 @@ body {
         margin-left: 35px;
         padding-top: 10px;
         font-style: italic;
+      }
+
+      .map {
+        border: 1px black solid;
+        float: right;
       }
     }
   }

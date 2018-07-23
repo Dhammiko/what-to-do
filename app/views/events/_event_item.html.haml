@@ -1,7 +1,15 @@
 .item
   %hr
+  - if @enable_google_maps
+    %iframe{align: 'right', 
+      name: 'window', 
+      src: "https://www.google.com/maps/embed/v1/place?key=#{CONFIG["google_api_key"]}&q=#{event.venue_address.join(' ')}&zoom=14", 
+      height: '300', 
+      width: '300', 
+      class: 'map'}
   %div.name= event.name
   %div.date= event.date
   %div.venue_name= event.venue_name
-  %div.venue_address= event.venue_address.join("<br>").html_safe
+  %div.venue_address= event.venue_address.join('<br>').html_safe
   %div.weather_forecast= event.weather_forecast
+  

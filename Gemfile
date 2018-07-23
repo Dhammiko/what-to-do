@@ -10,8 +10,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'bootstrap-datepicker-rails'
 gem 'curb'
 gem 'haml'
-gem 'web-console', '~> 2.0', group: :development
 gem 'jquery-rails'
+gem 'web-console', '~> 2.0', group: :development
 
 group :development, :test do
   gem 'factory_bot'
