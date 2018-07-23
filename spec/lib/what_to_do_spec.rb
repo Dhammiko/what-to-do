@@ -28,7 +28,7 @@ describe WhatToDo::EventGetter do
       it 'should not raise if the client returns bad data' do
         allow(client).to receive(:events_for).with(anything).and_return(nil)
 
-        expect{subject.get_events}.to_not raise_error
+        expect { subject.get_events }.to_not raise_error
       end
     end
   end
