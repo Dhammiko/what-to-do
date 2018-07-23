@@ -27,4 +27,6 @@ TODOS:
 
 NOTES: 
 
+  eager loading and class caching is enabled so you have to restart the server if you change some things
+
   ignoring these rubocops: Style/LineLength,Style/ExpandPathArguments,Metrics/BlockLength,Style/DateTime
