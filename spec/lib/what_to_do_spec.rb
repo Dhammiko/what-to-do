@@ -22,7 +22,6 @@ describe WhatToDo::EventGetter do
 
       subject { WhatToDo::EventGetter.new('zipcode' => '90210') }
       it 'should only fetch up to the max_events' do
-        puts 'wat'
         expect(subject.get_events.count).to eq(CONFIG['max_events'])
       end
 

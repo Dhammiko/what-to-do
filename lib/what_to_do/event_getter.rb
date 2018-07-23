@@ -14,7 +14,6 @@ module WhatToDo
     def get_events
       threads = []
       return unless eventbrite_events.present?
-      puts 'umm'
       eventbrite_events.each do |event|
         break if threads.count >= max_events
         threads << Thread.new do
