@@ -45,7 +45,7 @@ class EventBriteClient
   end
 
   def token
-    "FM3OKTZ2SS6H5CVV6MBU"
+    CONFIG["event_brite_token"]
   end
 
   def host

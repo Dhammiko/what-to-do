@@ -36,10 +36,14 @@ class Event
   end
 
   def date
-    parsed_datetime.strftime('%Y-%m-%d %I:%M %p')
+    parsed_datetime.strftime(output_date_format)
   end
 
   private
+
+  def output_date_format
+    CONFIG["output_date_format"]
+  end
 
   def venue
     @venue ||= EventBriteClient.new.venue_for(venue_id)

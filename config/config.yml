@@ -1,0 +1,8 @@
+development: &default
+  max_events: 10
+  output_date_format: '%Y-%m-%d %I:%M %p'
+  event_brite_token: "FM3OKTZ2SS6H5CVV6MBU"
+  dark_sky_token: "5a4714a803fd26697ef951505a512e34"
+
+test: &test
+  <<: *default

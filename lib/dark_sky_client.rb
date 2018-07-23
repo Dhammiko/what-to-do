@@ -24,7 +24,7 @@ class DarkSkyClient
   end
 
   def token
-    "5a4714a803fd26697ef951505a512e34"
+    CONFIG["dark_sky_token"]
   end
 
   def epochtime

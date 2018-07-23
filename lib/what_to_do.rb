@@ -29,7 +29,7 @@ class WhatToDo
   end
 
   def max_events
-    25
+    CONFIG["max_events"]
   end
 
   def get_date(date_string)
