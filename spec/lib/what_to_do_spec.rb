@@ -34,9 +34,11 @@ describe WhatToDo do
       end
     end
 
-    context "when given a valid date" do
-      it "should not raise" do
-        expect{ WhatToDo.new({'zipcode' => '12345', 'datetime' => 'pizza'}) }.to raise_exception(Exceptions::InvalidDate)
+    context "when missing the date string" do
+      it "should return a current DateTime object" do
+        expect(DateTime).to receive(:now)
+
+        WhatToDo.new({'zipcode' => '12345', 'datetime' => ""})
       end
     end
   end
