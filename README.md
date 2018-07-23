@@ -2,10 +2,7 @@
 a rails app to find events near a zip code that have a non rainy weather forecast
 
 KNOWN BUGS:
-
   EventBrite API will occasionally return a city far from the intended zipcode.
-
-  EventBrite API will very rarely return malformed JSON.  Input like 99999 six months from now can cause this.
 
 TODOS:
 

@@ -26,6 +26,13 @@ describe WhatToDo::Venue do
     it 'extracts the venue address' do
       expect(subject.address).to eq([venue_address])
     end
+
+    it 'does not raise when the address is nil' do
+      parsed_json = JSON.parse(venue_json)
+      parsed_json['address']['localized_multi_line_address_display'] = nil
+
+      expect { WhatToDo::Venue.new(parsed_json).address }.to_not raise_error
+    end
   end
 
   describe '#latitude' do

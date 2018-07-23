@@ -22,7 +22,9 @@ module WhatToDo
     end
 
     def address
-      venue_json['address']['localized_multi_line_address_display'].map(&:strip)
+      return [] unless address = venue_json['address']['localized_multi_line_address_display']
+      address.map(&:strip)
     end
+
   end
 end
