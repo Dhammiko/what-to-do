@@ -1,1 +1,12 @@
-%p ayyy you got an event
+%head
+  %title Fair weather events near you
+%body
+  = render partial: 'shared/input_form'
+  %h1#results
+  - if @events_count.present?
+    %p showing events near #{session["zipcode"]} around #{session["datetime"]}
+    %p we found #{pluralize(@events_count,"event")} that should have nice weather!
+    = render partial: 'event_item', collection: @events, as: :event
+  - else
+    %p well this is a bummer, we didn't find any events near #{session["zipcode"]} around #{session["datetime"]} that will have clear skies.  Maybe try again later
+    

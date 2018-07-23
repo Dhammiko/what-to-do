@@ -1,0 +1,7 @@
+%h2#zipcode_label what to do, what to do
+= form_tag('/events', method: 'get') do
+  = label_tag('zip', 'Enter ZIP code')
+  = text_field_tag('zipcode', session["zipcode"], maxlength: 5, size: 5)
+  = text_field_tag('datetime', session["datetime"], class: "form-control", id: 'date_field', size: 8, :data => {:provide => 'datepicker'})
+  = submit_tag 'Submit'
+
