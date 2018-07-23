@@ -1,7 +1,7 @@
 .input-form
   = form_tag('/events', method: 'get') do
     = label_tag('zipcode', 'zip:')
-    = text_field_tag('zipcode', session["zipcode"], class: "input-box", maxlength: 5, size: 4, placeholder: session["zipcode"])
+    = text_field_tag('zipcode', session["zipcode"], class: "input-box", maxlength: 5, size: 6, placeholder: session["zipcode"])
     = label_tag('datetime', 'date:')
-    = text_field_tag('datetime', session["datetime"], class: "form-control, input-box", id: 'date_field', size: 4, data: {:provide => 'datepicker'}, placeholder: session["datetime"])
+    = text_field_tag('datetime', session["datetime"], class: "form-control, input-box", id: 'date_field', size: 6, data: {:provide => 'datepicker'}, placeholder: session["datetime"])
     = submit_tag 'Find events'
