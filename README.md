@@ -9,21 +9,21 @@ known bugs:
   if you get a circular reference error just stop and restart.  this is an oddness with the threading and I didn't have time to track it down but it's pretty rare.
 
 todo:
-  currently the flash messages only display on root and errors are redirected to root for display.  there's no real reason this has to be this way and it'd be nice to add a javascript validator for the zipcode and have the flash messages on all the pages
+  sort out all the security vulnerabilities that github is mad about
 
-  I put some rough google maps support in but it'd be nice to have it as a checkbox rather than a hidden feature
+  currently the flash messages only display on root.  it would be nice to add a javascript validator for the zipcode and have the flash messages on all the pages
+
+  convert google maps support from a config option to a user checkbox
 
   activemodel could be used with aggressive expiration to speed things up a tiny bit.  the apis are so lightweight and fast this was not a priority.
 
   currently any forecast with the word 'rain' in it is excluded.  the API has more granular distinction between the weather types and that could be exposed to the user
 
-  I would like to use HTML5 geolocation to automatically fill the users zipcode. 
+  HTML5 geolocation to automatically fill the users zipcode. 
 
   a link to add the event to your calendar would be cool too
 
-  a styling pass by someone who actually has a sense of style wouldn't hurt.  I try but without a mockup ......
+  a styling pass by someone who actually has a sense of style wouldn't hurt.
 
 notes:
-  you can turn google map embeds on by adding enable_google_maps=true  to the url.  I didn't like the look or speed of this so I didn't make it formal but it might actually be useful so I'm leaving it in as an easter egg.
   ignoring these cops: Style/LineLength,Style/ExpandPathArguments,Metrics/BlockLength,Style/DateTime
-
