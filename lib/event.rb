@@ -12,7 +12,7 @@ class Event
   def load
     venue
     forecast
-    self
+    !rainy_event? ? self : nil
   end
 
   def name

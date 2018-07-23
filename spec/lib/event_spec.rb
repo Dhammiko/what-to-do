@@ -22,6 +22,31 @@ describe Event do
 
   subject { Event.new(event_json) }
 
+  describe '#load' do
+    before { allow(subject).to receive(:rainy_event?).and_return(false) }
+    it 'loads venue' do
+      expect(subject).to receive(:venue)
+
+      subject.load
+    end
+
+    it 'loads forecast' do
+      expect(subject).to receive(:forecast)
+
+      subject.load
+    end
+
+    it 'returns itself' do
+      expect(subject.load).to eq(subject)
+    end
+
+    it 'returns nil if the forecast for the event is rainy' do
+      allow(subject).to receive(:rainy_event?).and_return(true)
+
+      expect(subject.load).to be_nil
+    end
+  end
+
   describe '#name' do
     it 'includes the event title' do
       expect(subject.name).to eq(name)

@@ -15,7 +15,7 @@ class WhatToDo
         event&.load
       }
     end
-    threads.map!(&:join).map!(&:value)
+    events = threads.map!(&:join).map!(&:value).compact
   end
 
   private

@@ -11,18 +11,17 @@ describe WhatToDo do
 
     describe "#get_events" do
       let(:client) { double('event brite client') }
-      let!(:event) { double(:event, to_s: "an event") }
+      let!(:event) { double('vent', load: "an event") }
       let(:thirty_events) { Array.new(30, event) }
       before do
         allow(EventBriteClient).to receive(:new).and_return(client)
         allow(client).to receive(:events_for).with(anything).and_return(thirty_events)
-        allow(Event).to receive(:new).with(anything).and_return(double(load: ''))
+        allow(Event).to receive(:new).with(anything).and_return(double(load: "loaded event"))
       end
 
       subject { WhatToDo.new({'zipcode' => '90210'}) }
       it "should only fetch up to the max_events" do
-        events = subject.get_events
-        expect(events.count).to eq(3)
+        expect(subject.get_events.count).to eq(CONFIG["max_events"])
       end
     end
   end
