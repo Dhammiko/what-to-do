@@ -15,14 +15,21 @@ describe WhatToDo::EventGetter do
       let!(:event) { double('vent', load: 'an event') }
       let(:thirty_events) { Array.new(30, event) }
       before do
-        allow(Client::EventBriteClient).to receive(:new).and_return(client)
+        allow_any_instance_of(WhatToDo::EventGetter).to receive(:event_brite_client).and_return(client)
         allow(client).to receive(:events_for).with(anything).and_return(thirty_events)
         allow(WhatToDo::Event).to receive(:new).with(anything).and_return(double(load: 'loaded event'))
       end
 
       subject { WhatToDo::EventGetter.new('zipcode' => '90210') }
       it 'should only fetch up to the max_events' do
+        puts 'wat'
         expect(subject.get_events.count).to eq(CONFIG['max_events'])
+      end
+
+      it 'should not raise if the client returns bad data' do
+        allow(client).to receive(:events_for).with(anything).and_return(nil)
+
+        expect{subject.get_events}.to_not raise_error
       end
     end
   end

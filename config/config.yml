@@ -12,7 +12,8 @@ development: &default
 
   #dark_sky_token: '5a4714a803fd26697ef951505a512e34'
   #dark_sky_token: '6091b633167fcafd15291f4cfd043221'
-  dark_sky_token: '84987f589cfe65e593b997e2aac0db03'
+  #dark_sky_token: '84987f589cfe65e593b997e2aac0db03'
+  dark_sky_token: '02b753f6364e9a382053e88ff9d55c1b'
 
   google_api_key: 'AIzaSyAN_kT1E2EmYJMVmnb7xwjfem1T2rXeam8'
 
