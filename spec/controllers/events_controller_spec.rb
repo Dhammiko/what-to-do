@@ -6,13 +6,23 @@ describe EventsController do
     let(:event) { double('event') }
     let(:whattodo) { double }
 
-    it 'assigns @events' do
-      allow(WhatToDo).to receive(:new).with(anything).and_return(whattodo)
-      allow(whattodo).to receive_messages(get_events: [event])
-      
-      get :index, params
+    context 'events are found' do
+      before do
+        allow(WhatToDo).to receive(:new).with(anything).and_return(whattodo)
+        allow(whattodo).to receive_messages(get_events: [event])
+      end
 
-      expect(assigns(:events)).to eq([event])
+      it 'assigns @events' do
+        get :index, params
+
+        expect(assigns(:events)).to eq([event])
+      end
+
+      it 'assigns @event_count' do
+        get :index, params
+
+        expect(assigns(:events_count)).to eq(1)
+      end
     end
 
     let(:referer) { '/' }

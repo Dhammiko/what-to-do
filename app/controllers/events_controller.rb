@@ -3,18 +3,33 @@ class EventsController < ApplicationController
   rescue_from Exceptions::InvalidDate, with: :invalid_date
 
   def index
-    @events = WhatToDo.new(params).get_events
+    persist_session
+    if @events = WhatToDo.new(user_params).get_events
+      @events_count = @events.count
+    end
   end
 
   private
 
+  def user_params
+    params.slice("zipcode","datetime")
+  end
+
+  def persist_session
+    user_params.each do |key, value|
+      session[key] = value
+    end
+  end
+
   def invalid_zip
-    flash[:error] = "Sorry, you'll need to input a 5 digit zip code."
-    redirect_to(:back)
+    session["zipcode"] = nil
+    flash[:error] = "Sorry, '#{params["zipcode"]}' won't work as a zipcode."
+    redirect_to(:root)
   end
 
   def invalid_date
-    flash[:error] = "Sorry, we can't understand that date format. Give it another shot!"
-    redirect_to(:back)
+    session["datetime"] = nil
+    flash[:error] = "Sorry, '#{params["datetime"]}' won't work as a date."
+    redirect_to(:root)
   end
 end
