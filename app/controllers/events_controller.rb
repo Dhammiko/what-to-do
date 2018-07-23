@@ -6,7 +6,6 @@ class EventsController < ApplicationController
   def index
     persist_session
     @events = WhatToDo.new(user_params).get_events
-    @enable_google_maps = params['enable_google_maps'].present?
   end
 
   private

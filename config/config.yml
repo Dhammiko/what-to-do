@@ -2,18 +2,21 @@ development: &default
   # max number of events to return
   max_events: 20
 
-  #max number of days to look ahead for events
+  # max number of days to look ahead for events
   default_lookahead_days: 7
 
-  #output_date_format: '%Y-%m-%d %I:%M %p'
+  # output_date_format: '%Y-%m-%d %I:%M %p'
   output_date_format: '%A, %b %d at %r'
 
   event_brite_token: 'FM3OKTZ2SS6H5CVV6MBU'
 
-  #dark_sky_token: '5a4714a803fd26697ef951505a512e34'
+  # dark_sky_token: '5a4714a803fd26697ef951505a512e34'
   dark_sky_token: '6091b633167fcafd15291f4cfd043221'
 
   google_api_key: 'AIzaSyAN_kT1E2EmYJMVmnb7xwjfem1T2rXeam8'
+
+  # experimental, needs more css
+  enable_google_maps: false
 
 test: &test
   <<: *default

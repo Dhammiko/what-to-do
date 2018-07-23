@@ -1,6 +1,6 @@
 .item
   %hr
-  - if @enable_google_maps
+  - if CONFIG["enable_google_maps"]
     %iframe{align: 'right', 
       name: 'window', 
       src: "https://www.google.com/maps/embed/v1/place?key=#{CONFIG["google_api_key"]}&q=#{event.venue_address.join(' ')}&zoom=14", 
