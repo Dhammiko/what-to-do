@@ -23,18 +23,6 @@ describe Event do
 
   describe '#load' do
     before { allow(subject).to receive(:rainy_event?).and_return(false) }
-    it 'loads venue' do
-      expect(subject).to receive(:venue)
-
-      subject.load
-    end
-
-    it 'loads forecast' do
-      expect(subject).to receive(:forecast)
-
-      subject.load
-    end
-
     it 'returns itself' do
       expect(subject.load).to eq(subject)
     end
