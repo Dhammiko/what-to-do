@@ -1,18 +1,17 @@
+# events controller
 class EventsController < ApplicationController
   rescue_from Exceptions::InvalidZip, with: :invalid_zip
   rescue_from Exceptions::InvalidDate, with: :invalid_date
 
   def index
     persist_session
-    if @events = WhatToDo.new(user_params).get_events
-      @events_count = @events.count
-    end
+    @events = WhatToDo.new(user_params).get_events
   end
 
   private
 
   def user_params
-    params.slice("zipcode","datetime")
+    params.slice('zipcode', 'datetime')
   end
 
   def persist_session
@@ -22,11 +21,11 @@ class EventsController < ApplicationController
   end
 
   def invalid_zip
-    invalid_redirect("zipcode")
+    invalid_redirect('zipcode')
   end
 
   def invalid_date
-    invalid_redirect("datetime")
+    invalid_redirect('datetime')
   end
 
   def invalid_redirect(bad_param)

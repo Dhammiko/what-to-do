@@ -21,11 +21,11 @@ class WhatToDo
   private
 
   def eventbrite_events
-	events = Array.new
-	EventBriteClient.new.events_for(zipcode: zipcode, datetime: datetime).each do |raw_event|
-	  events << Event.new(raw_event)
-	end
-	events
+    events = Array.new
+    EventBriteClient.new.events_for(zipcode: zipcode, datetime: datetime).each do |raw_event|
+      events << Event.new(raw_event)
+    end
+    events
   end
 
   def max_events
