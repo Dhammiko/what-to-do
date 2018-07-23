@@ -11,8 +11,6 @@ class Event
   end
 
   def load
-    venue
-    forecast
     !rainy_event? ? self : nil
   end
 
