@@ -1,3 +1,4 @@
+# an object to hold the weater forecast for a venue at a certain date
 class Forecast
   attr_reader :forecast_json, :datetime
 
@@ -12,10 +13,10 @@ class Forecast
 
   def forecast
     forecast_json['hourly']['data'][hour_of_day]['summary']
-  end  
+  end
 
   private
-  
+
   def hour_of_day
     DateTime.parse(datetime).strftime('%H').to_i
   end

@@ -8,11 +8,10 @@ describe Event do
   let(:weather_forecast) { 'so bright it hurts' }
   let(:venue) { double('A Venue', name: venue_name, address: venue_address) }
   let(:forecast) { FactoryBot.create(:forecast, forecast: weather_forecast) }
-  let(:event_json) {JSON.parse({
-                    name: {text: "#{name}"},
-                    start: {local: "#{date}"}
-                  }.to_json)}
-
+  let(:event_json) do
+    JSON.parse({ name: { text: name.to_s },
+                 start: { local: date.to_s } }.to_json)
+  end
 
   before do
     allow_any_instance_of(Event).to receive(:dsclient).and_return(double)
@@ -79,7 +78,7 @@ describe Event do
 
   describe '#date' do
     it 'returns a nice formatted date' do
-      expect(subject.date).to eq("Saturday, Jul 07 at 11:00:00 AM")
+      expect(subject.date).to eq('Saturday, Jul 07 at 11:00:00 AM')
     end
   end
 end

@@ -1,3 +1,4 @@
+# an object tto hold information about the venue for an event
 class Venue
   attr_reader :venue_json
 

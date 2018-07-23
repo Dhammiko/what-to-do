@@ -2,6 +2,7 @@ require 'date'
 require_relative '../lib/dark_sky_client.rb'
 require_relative '../lib/forecast.rb'
 
+# object for holding event brite event data and mapping it to a venue and the forecast for that venue
 class Event
   attr_reader :event_json
 
@@ -26,7 +27,7 @@ class Event
   def venue_address
     venue.address
   end
-  
+
   def weather_forecast
     forecast.forecast
   end
@@ -42,7 +43,7 @@ class Event
   private
 
   def output_date_format
-    CONFIG["output_date_format"]
+    CONFIG['output_date_format']
   end
 
   def venue
@@ -50,7 +51,7 @@ class Event
   end
 
   def dsclient
-    @dsclient ||= DarkSkyClient.new(latitude: venue.latitude,longitude: venue.longitude, datetime: datetime)
+    @dsclient ||= DarkSkyClient.new(latitude: venue.latitude, longitude: venue.longitude, datetime: datetime)
   end
 
   def forecast
@@ -61,11 +62,11 @@ class Event
     event_json['venue_id']
   end
 
-  def datetime 
+  def datetime
     parsed_datetime.strftime('%Y-%m-%d')
   end
 
- def parsed_datetime
+  def parsed_datetime
     DateTime.parse(event_json['start']['local'])
   end
 end

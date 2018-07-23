@@ -1,10 +1,11 @@
 require 'curb'
 require 'json'
 
+# acess the dark sky API
 class DarkSkyClient
-  attr_reader :latitude,:longitude,:datetime
+  attr_reader :latitude, :longitude, :datetime
 
-  def initialize(latitude:,longitude:,datetime:)
+  def initialize(latitude:, longitude:, datetime:)
     @latitude = latitude
     @longitude = longitude
     @datetime = datetime
@@ -24,7 +25,7 @@ class DarkSkyClient
   end
 
   def token
-    CONFIG["dark_sky_token"]
+    CONFIG['dark_sky_token']
   end
 
   def epochtime

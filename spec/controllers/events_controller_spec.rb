@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe EventsController do
   describe 'GET index' do
-    let(:params) { {'zipcode' => "90210"} }
+    let(:params) { { 'zipcode' => '90210' } }
     let(:event) { double('event') }
     let(:whattodo) { double }
 
@@ -21,9 +21,9 @@ describe EventsController do
 
     let(:referer) { '/' }
     context 'invalid zipcodes' do
-      let(:params) { {'zipcode' => '1234'} }
+      let(:params) { { 'zipcode' => '1234' } }
 
-      before { request.env["HTTP_REFERER"] = referer }
+      before { request.env['HTTP_REFERER'] = referer }
 
       it 'sets an error message if InvalidZip is raised' do
         get :index, params
@@ -39,8 +39,8 @@ describe EventsController do
     end
 
     context 'invalid dates' do
-      let(:params) { {'zipcode' => '12345', 'datetime' => 'pizza'} }
-      before { request.env["HTTP_REFERER"] = referer }
+      let(:params) { { 'zipcode' => '12345', 'datetime' => 'pizza' } }
+      before { request.env['HTTP_REFERER'] = referer }
 
       it 'sets an error message if InvalidDate is raised' do
         get :index, params

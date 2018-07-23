@@ -29,7 +29,6 @@ gem 'web-console', '~> 2.0', group: :development
 
 group :development, :test do
   gem 'factory_bot'
-  gem 'jasmine-rails'
   gem 'pry'
   gem 'pry-nav'
   gem 'rspec-rails'

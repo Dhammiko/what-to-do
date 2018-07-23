@@ -1,12 +1,11 @@
 require 'curb'
 require 'json'
 require_relative '../lib/venue.rb'
-
+# a client for accessing event brite event data
 class EventBriteClient
   attr_reader :zipcode, :venue_id, :datetime
 
-  def initialize
-  end
+  def initialize; end
 
   def events_for(zipcode:, datetime:)
     @zipcode = zipcode
@@ -45,11 +44,11 @@ class EventBriteClient
   end
 
   def token
-    CONFIG["event_brite_token"]
+    CONFIG['event_brite_token']
   end
 
   def host
-    "https://www.eventbriteapi.com/v3/"
+    'https://www.eventbriteapi.com/v3/'
   end
 
   def events_start_date
@@ -57,14 +56,14 @@ class EventBriteClient
   end
 
   def events_end_date
-    format_date(datetime+default_lookahead_days)
+    format_date(datetime + default_lookahead_days)
   end
 
   def default_lookahead_days
-    7
+    CONFIG['default_lookahead_days']
   end
 
   def format_date(date)
-    date.strftime("%Y-%m-%dT%H:%M:%S")
+    date.strftime('%Y-%m-%dT%H:%M:%S')
   end
 end
