@@ -17,12 +17,6 @@ describe EventsController do
 
         expect(assigns(:events)).to eq([event])
       end
-
-      it 'assigns @event_count' do
-        get :index, params
-
-        expect(assigns(:events_count)).to eq(1)
-      end
     end
 
     let(:referer) { '/' }

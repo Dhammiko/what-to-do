@@ -79,7 +79,7 @@ describe Event do
 
   describe '#date' do
     it 'returns a nice formatted date' do
-      expect(subject.date).to eq("2018-07-07 11:00 AM")
+      expect(subject.date).to eq("Saturday, Jul 07 at 11:00:00 AM")
     end
   end
 end
