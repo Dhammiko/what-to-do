@@ -7,8 +7,6 @@ KNOWN BUGS:
 
   EventBrite API will very rarely return malformed JSON.  Input like 99999 six months from now can cause this.
 
-  Due to an issue with Ruby threading, if the app encounters a 500 you may have to restart it or you'll see a circular reference error that is non recoverable.
-
 TODOS:
 
   Add the flash messages on the events index as well as home index.
