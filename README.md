@@ -2,7 +2,10 @@
 what to do in your area
 
 known bugs:
-  the api's return good data 99% of the time but in some rare instances their json response will be missing elements and the app does not gracefully handle these.  
+  if you get a circular reference error just stop and restart;  I've only seen it happen when execution gets halted.
+
+  the api's return good data 99% of the time but in some rare instances their json response will be missing elements and the app does not gracefully handle these yet.  it's rare enough that I didn't try to mitigate it.
+
   sometimes the API will return a city that is really far away, like colorado once in a while for 90210.  this would require a bit of effort to fix and slow things down so I've left it.
 
 todo:
@@ -15,6 +18,8 @@ todo:
   Google maps inline with the events would be pretty cool
 
   a link to add the event to your calendar would be cool too
+
+  a styling pass by someone who actually has a sense of style wouldn't hurt.  I try but without a mockup ......
 
 notes:
   ignoring these cops: Style/LineLength,Style/ExpandPathArguments,Metrics/BlockLength,Style/DateTime
