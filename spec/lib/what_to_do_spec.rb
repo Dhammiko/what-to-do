@@ -9,33 +9,33 @@ describe WhatToDo do
       end
     end
 
-    describe "#print_events" do
+    describe "#get_events" do
+      let(:client) { double('event brite client') }
       let!(:event) { double(:event, to_s: "an event") }
+      let(:thirty_events) { Array.new(30, event) }
+      before do
+        allow(EventBriteClient).to receive(:new).and_return(client)
+        allow(client).to receive(:events_for).with(anything).and_return(thirty_events)
+        allow(Event).to receive(:new).with(anything).and_return(double(load: ''))
+      end
 
       subject { WhatToDo.new({'zipcode' => '90210'}) }
-      it "should call get_events" do
-        expect_any_instance_of(WhatToDo).to receive(:get_events).and_return([event])
-        subject.print_events
-      end
-
-      it "should call to_s on events it receives" do
-        allow_any_instance_of(WhatToDo).to receive(:get_events).and_return([event])
-        expect(event).to receive(:to_s)
-        subject.print_events
-      end
-
-      let(:six_events) { Array.new(30, event) }
-      it "should only print up to the max_events" do
-        allow_any_instance_of(WhatToDo).to receive(:get_events).and_return(six_events)
-        expect(event).to receive(:to_s).exactly(25).times
-        subject.print_events
+      it "should only fetch up to the max_events" do
+        events = subject.get_events
+        expect(events.count).to eq(3)
       end
     end
   end
 
-  context "when passed an invalid date" do
-    describe "#initialize" do
+  describe "#initialize" do
+    context "when passed an invalid date" do
       it "should raise InvalidDate" do
+        expect{ WhatToDo.new({'zipcode' => '12345', 'datetime' => 'pizza'}) }.to raise_exception(Exceptions::InvalidDate)
+      end
+    end
+
+    context "when given a valid date" do
+      it "should not raise" do
         expect{ WhatToDo.new({'zipcode' => '12345', 'datetime' => 'pizza'}) }.to raise_exception(Exceptions::InvalidDate)
       end
     end
