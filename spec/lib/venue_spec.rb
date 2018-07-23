@@ -3,18 +3,28 @@ require 'rails_helper'
 describe Venue do
   let(:latitude) { "3" }
   let(:longitude) { "-7" }
-  let(:venue_json) { {name: "a place",
+  let(:venue_name) { "fraggle hall" }
+  let(:venue_address) { "fraggle rock" }
+  let(:venue_json) { {name: venue_name,
                       latitude: latitude,
                       longitude: longitude,
-                      address: {localized_multi_line_address_display: ["somewhere"]}
+                      address: {localized_multi_line_address_display: [venue_address]}
                     }.to_json }
 
   subject{ Venue.new(JSON.parse(venue_json)) }
-  describe "#to_s" do
-    it "combines the name and address with newlines" do
-      expect(subject.to_s).to eq(["a place","somewhere"].join("\r\n"))
+
+  describe "#name" do
+    it "extracts the venue name" do
+      expect(subject.name).to eq(venue_name)
     end
   end
+
+  describe "#address" do
+    it "extracts the venue address" do
+      expect(subject.address).to eq([venue_address])
+    end
+  end
+
 
   describe "#latitude" do
     it "extracts the latitude from the input json" do

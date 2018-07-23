@@ -5,10 +5,6 @@ class Venue
     @venue_json = venue_json
   end
 
-  def to_s
-    [name,address].compact.join("\r\n")
-  end
-
   def latitude
     venue_json['latitude']
   end
@@ -16,8 +12,6 @@ class Venue
   def longitude
     venue_json['longitude']
   end
-
-  private
 
   def name
     venue_json['name']
