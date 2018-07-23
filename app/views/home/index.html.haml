@@ -1,9 +1,11 @@
 %head
   %title Fair weather events near you
 %body
+  = render partial: 'shared/header'
   = render partial: 'shared/input_form'
   %h1#results
     %p
       - flash.each do |key, value|
-        %strong
+        %strong.flash
           = value
+  = render partial: 'shared/footer'

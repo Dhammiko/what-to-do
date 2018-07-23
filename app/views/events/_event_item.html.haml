@@ -1,6 +1,7 @@
-%div.name= event.name
-%div.date= event.date
-%div.venue_name= event.venue_name
-%div.venue_address= event.venue_address.join("<br>").html_safe
-%div.weather_forecast= event.weather_forecast
-%hr
+.item
+  %hr
+  %div.name= event.name
+  %div.date= event.date
+  %div.venue_name= event.venue_name
+  %div.venue_address= event.venue_address.join("<br>").html_safe
+  %div.weather_forecast= event.weather_forecast

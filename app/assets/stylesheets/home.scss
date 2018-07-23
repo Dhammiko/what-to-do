@@ -1,3 +1,117 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #333;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+  padding-left: 20px;
+
+  .input-form {
+    font-size: 30px;
+
+    input {
+      padding: 10px;
+      font-size: 1.2em;
+    }
+
+    input::placeholder {
+      font-size: 30px;
+    }
+
+    .input-box {
+      height: 30px;
+    }
+  }
+
+  .results {
+    font-size: 25px;
+
+    .item {
+      padding-left: 5%;
+      padding-right: 5%;
+      color: gray;
+
+      hr {
+        width: 15%;
+        margin-left: 20px;
+        margin-top: 20px;
+        margin-bottom: 40px;
+      }
+
+      .name {
+        margin-left: 15px;
+        font-size: 30px;
+        margin-bottom: 5px;
+        font-weight: medium;
+        color: black;
+      }
+
+      .date {
+        margin-left: 35px;
+        padding-top: 2px;
+      }
+
+      .venue_name {
+        margin-left: 35px;
+        padding-top: 10px;
+        font-size: 27px;
+        color: #383838;
+      }
+
+      .venue_address {
+        margin-left: 35px;
+        padding-top: 10px;
+      }
+
+      .weather_forecast {
+        font-size: 20px;
+        margin-left: 35px;
+        padding-top: 10px;
+        font-style: italic;
+      }
+    }
+  }
+
+  .header {
+    .name {
+      font-size: 50px;
+      padding: 0px;
+      margin: 0px;
+    }
+
+    .blurb {
+      font-size: 20px;
+      margin-top: 4px;
+      font-style: italic;
+    }
+  }
+
+  .dropdown-menu {
+    z-index: 1000;
+    position: absolute;
+    padding: 5px;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    list-style: none;
+    min-width: 160px;
+    background-clip: padding-box;
+    box-shadow: (0 5px 10px rgba(0, 0, 0, 0.2));
+  }
+
+  .flash {
+    color: red;
+  }
+
+  .footer {
+    padding-top: 50px;
+  }
+}
+
+.center {
+  text-align: center;
+}
