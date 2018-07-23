@@ -22,14 +22,16 @@ class EventsController < ApplicationController
   end
 
   def invalid_zip
-    session["zipcode"] = nil
-    flash[:error] = "Sorry, '#{params["zipcode"]}' won't work as a zipcode."
-    redirect_to(:root)
+    invalid_redirect("zipcode")
   end
 
   def invalid_date
-    session["datetime"] = nil
-    flash[:error] = "Sorry, '#{params["datetime"]}' won't work as a date."
+    invalid_redirect("datetime")
+  end
+
+  def invalid_redirect(bad_param)
+    session[bad_param] = nil
+    flash[:error] = "Sorry, '#{params[bad_param]}' won't work as a #{bad_param}."
     redirect_to(:root)
   end
 end
