@@ -7,17 +7,38 @@ class Event
 
   def initialize(event_json)
     @event_json = event_json
+    venue
+    forecast
   end
 
-  def to_s
-    return [] if rainy_event
-    [name,formatted_date,venue.to_s,forecast.to_s,"\r\n"].join("\r\n")
+  def name
+    event_json['name']['text'].strip
+  end
+
+  def venue_name
+    venue.name
+  end
+
+  def venue_address
+    venue.address
+  end
+  
+  def weather_forecast
+    forecast.forecast
+  end
+
+  def rainy_event?
+    forecast.rain?
+  end
+
+  def date
+    parsed_datetime.strftime('%Y-%m-%d %I:%M %p')
   end
 
   private
 
-  def rainy_event
-    forecast.rain?
+  def venue
+    @venue ||= EventBriteClient.new.venue_for(venue_id)
   end
 
   def dsclient
@@ -28,24 +49,12 @@ class Event
     @forecast ||= Forecast.new(forecast_json: dsclient.fetch_weather_json, datetime: datetime)
   end
 
-  def venue
-    @venue ||= EventBriteClient.new.venue_for(venue_id)
-  end
-
   def venue_id
     event_json['venue_id']
   end
 
-  def name
-    event_json['name']['text'].strip
-  end
-
   def datetime 
     parsed_datetime.strftime('%Y-%m-%d')
-  end
-
-  def formatted_date
-    parsed_datetime.strftime('%Y-%m-%d %I:%M %p')
   end
 
  def parsed_datetime
