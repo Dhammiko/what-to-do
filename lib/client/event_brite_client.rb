@@ -10,7 +10,7 @@ module Client
     def events_for(zipcode:, datetime:)
       @zipcode = zipcode
       @datetime = datetime
-      fetch_events['events']
+      fetch_events['events'].take(max_events)
     end
 
     def venue_for(venue_id)
@@ -65,6 +65,10 @@ module Client
 
     def format_date(date)
       date.strftime('%Y-%m-%dT%H:%M:%S')
+    end
+
+    def max_events
+      CONFIG['max_events']
     end
   end
 end

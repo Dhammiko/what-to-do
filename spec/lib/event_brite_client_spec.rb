@@ -27,6 +27,9 @@ describe Client::EventBriteClient do
         expect(subject).to receive(:get_json).with(events_url).and_call_original
         subject.events_for(zipcode: zipcode, datetime: datetime)
       end
+
+      xit 'only returns up to max_events worth of events' do
+      end
     end
   end
 
