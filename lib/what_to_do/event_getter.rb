@@ -22,11 +22,10 @@ module WhatToDo
 
     def eventbrite_events
       events = []
-      raw_events = event_brite_client.events_for(zipcode: zipcode, datetime: datetime)
-      return unless raw_events.present?
-      raw_events.each do |raw_event|
-        events << Event.new(raw_event)
-      end
+      if raw_events = event_brite_client.events_for(zipcode: zipcode, datetime: datetime) do
+        raw_events.each do |raw_event|
+          events << Event.new(raw_event)
+	end
       events
     end
 
