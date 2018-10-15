@@ -13,7 +13,7 @@ describe WhatToDo::Forecast do
     end
 
     context "when the forecast does not contain the string 'rain'" do
-      it 'is true' do
+      it 'is false' do
         allow(subject).to receive(:forecast).and_return('nothing but sun')
         expect(subject.rain?).to be false
       end
