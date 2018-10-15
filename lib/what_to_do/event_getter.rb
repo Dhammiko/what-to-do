@@ -12,15 +12,10 @@ module WhatToDo
     end
 
     def get_events
-      threads = []
       return unless eventbrite_events.present?
       eventbrite_events.each do |event|
-        break if threads.count >= max_events
-        threads << Thread.new do
-          event.load
-        end
+        Thread.new { event.load }
       end
-      threads.map!(&:join).map!(&:value).compact
     end
 
     private
