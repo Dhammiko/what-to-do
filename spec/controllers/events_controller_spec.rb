@@ -2,9 +2,17 @@ require 'rails_helper'
 
 describe EventsController do
   describe 'GET index' do
-    let(:params) { { 'zipcode' => '90210' } }
+    let(:zip) { '90210' }
+    let(:date) { '10/10' } 
+    let(:params) { { 'zipcode' => '90210', 'datetime' => '10/10' } }
     let(:event) { double('event') }
     let(:whattodo) { double('WhatToDo', get_events: [event])}
+
+    it 'symbolizes the user params' do
+      expect(EventGetter).to receive(:new).with(zipcode: zip, datetime: date).and_return(whattodo)
+
+      get :index, params
+    end
 
     context 'events are found' do
       before do
@@ -20,7 +28,7 @@ describe EventsController do
 
     let(:referer) { '/' }
     context 'invalid zipcodes' do
-      let(:params) { { 'zipcode' => '1234' } }
+      let(:params) { { 'zipcode' => '1234', 'datetime' => '10/10' } }
 
       before { request.env['HTTP_REFERER'] = referer }
 
@@ -47,7 +55,7 @@ describe EventsController do
 
         get :index, params
 
-        expect(session['datetime']).to eq("today")
+        expect(session['datetime']).to eq(DateTime.now.strftime("%-m/%y"))
       end
 
       it 'sets an error message if InvalidDate is raised' do

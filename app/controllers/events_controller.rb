@@ -10,7 +10,7 @@ class EventsController < ApplicationController
   private
 
   def user_params
-    params.slice('zipcode', 'datetime')
+    params.slice('zipcode', 'datetime').symbolize_keys
   end
 
   def persist_session
@@ -21,7 +21,7 @@ class EventsController < ApplicationController
   end
 
   def ensure_datetime_present
-    session['datetime'] = 'today' if session['datetime'] == ""
+    session['datetime'] = DateTime.now.strftime("%-m/%y") if session['datetime'] == ""
   end
 
   def invalid_zip

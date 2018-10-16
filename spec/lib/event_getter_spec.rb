@@ -4,7 +4,7 @@ describe EventGetter do
   context 'when passed a zipcode' do
     describe '#initialize' do
       it 'should raise InvalidZip unless the zipcode argument is 5 digits' do
-        expect { EventGetter.new('zipcode' => '1234') }.to raise_exception(Exceptions::InvalidZip)
+        expect { EventGetter.new({zipcode: '1234', datetime: ''}) }.to raise_exception(Exceptions::InvalidZip)
       end
     end
 
@@ -17,7 +17,7 @@ describe EventGetter do
         allow(Event).to receive(:new).with(anything).and_return(event)
       end
 
-      subject { EventGetter.new('zipcode' => '90210') }
+      subject { EventGetter.new({zipcode: '90210', datetime: ''}) }
 
       it 'should not raise if the client returns bad data' do
         allow(client).to receive(:events_for).with(anything).and_return(nil)
@@ -37,15 +37,15 @@ describe EventGetter do
   describe '#initialize' do
     context 'when passed an invalid date' do
       it 'should raise InvalidDate' do
-        expect { EventGetter.new('zipcode' => '12345', 'datetime' => 'pizza') }.to raise_exception(Exceptions::InvalidDate)
+        expect { EventGetter.new({zipcode: '12345', datetime: 'pizza'}) }.to raise_exception(Exceptions::InvalidDate)
       end
     end
 
-    context 'when missing the date string' do
+    context 'when given an empty date string' do
       it 'should return a current DateTime object' do
         expect(DateTime).to receive(:now)
 
-        EventGetter.new('zipcode' => '12345', 'datetime' => '')
+        EventGetter.new({zipcode: '12345', datetime: ''})
       end
     end
   end

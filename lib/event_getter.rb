@@ -1,9 +1,9 @@
 class EventGetter
   attr_reader :zipcode, :datetime
 
-  def initialize(args)
-    @zipcode = args['zipcode']
-    @datetime = get_date(args['datetime'])
+  def initialize(zipcode:, datetime: )
+    @zipcode = zipcode
+    @datetime = get_date(datetime)
     raise Exceptions::InvalidZip unless valid_zipcode?
   end
 
