@@ -6,8 +6,6 @@ KNOWN BUGS:
 
 TODOS:
 
-  Add the flash messages on the events index as well as home index.
-
   Add a javascript validator for zip code.
 
   Add a user checkbox to enable google maps support (instead of a config option).
@@ -25,5 +23,3 @@ TODOS:
 NOTES: 
 
   eager loading and class caching is enabled so you have to restart the server if you change some things
-
-  ignoring these rubocops: Style/LineLength,Style/ExpandPathArguments,Metrics/BlockLength,Style/DateTime
