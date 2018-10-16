@@ -26,7 +26,7 @@ class EventGetter
   end
 
   def get_date(date_string)
-    date_string.present? ? DateTime.parse(date_string) : DateTime.now
+    DateTime.parse(date_string)
   rescue ArgumentError
     raise Exceptions::InvalidDate
   end
