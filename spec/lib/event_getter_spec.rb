@@ -9,17 +9,12 @@ describe EventGetter do
     end
 
     describe '#get_events' do
-      xit 'fix these' do
-      end
-    end
-    describe '#get_events' do
       let(:client) { double('event brite client') }
-      let!(:event) { double('vent', load: 'an event') }
-      let(:thirty_events) { Array.new(30, event) }
+      let(:event) { double('event', load: 'an event') }
+      let(:events) { [event] }
       before do
-        allow_any_instance_of(EventGetter).to receive(:event_brite_client).and_return(client)
-        allow(client).to receive(:events_for).with(anything).and_return(thirty_events)
-        allow(Event).to receive(:new).with(anything).and_return(double(load: 'loaded event'))
+        allow(subject).to receive(:eventbrite_events).and_return(events)
+        allow(Event).to receive(:new).with(anything).and_return(event)
       end
 
       subject { EventGetter.new('zipcode' => '90210') }
@@ -28,6 +23,13 @@ describe EventGetter do
         allow(client).to receive(:events_for).with(anything).and_return(nil)
 
         expect { subject.get_events }.to_not raise_error
+      end
+
+      it 'should call load on event objects' do
+        allow(Thread).to receive(:new).and_yield
+        expect(event).to receive(:load)
+
+        subject.get_events
       end
     end
   end
