@@ -17,6 +17,11 @@ class EventsController < ApplicationController
     user_params.each do |key, value|
       session[key] = value
     end
+    ensure_datetime_present
+  end
+
+  def ensure_datetime_present
+    session['datetime'] = 'today' if session['datetime'] == ""
   end
 
   def invalid_zip

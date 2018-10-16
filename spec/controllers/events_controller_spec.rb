@@ -4,12 +4,11 @@ describe EventsController do
   describe 'GET index' do
     let(:params) { { 'zipcode' => '90210' } }
     let(:event) { double('event') }
-    let(:whattodo) { double }
+    let(:whattodo) { double('WhatToDo', get_events: [event])}
 
     context 'events are found' do
       before do
         allow(EventGetter).to receive(:new).with(anything).and_return(whattodo)
-        allow(whattodo).to receive_messages(get_events: [event])
       end
 
       it 'assigns @events' do
@@ -42,6 +41,15 @@ describe EventsController do
       let(:params) { { 'zipcode' => '12345', 'datetime' => 'pizza' } }
       before { request.env['HTTP_REFERER'] = referer }
 
+      it 'replaces the datetime with the string "today" if the user left it blank' do
+        allow(EventGetter).to receive(:new).with(anything).and_return(whattodo)
+        params['datetime'] = ""
+
+        get :index, params
+
+        expect(session['datetime']).to eq("today")
+      end
+
       it 'sets an error message if InvalidDate is raised' do
         get :index, params
 
@@ -49,7 +57,7 @@ describe EventsController do
       end
 
       it 'redirects us back if InvalidDate is raised' do
-        get :index, params: params
+        get :index, params
 
         expect(response).to redirect_to(referer)
       end
