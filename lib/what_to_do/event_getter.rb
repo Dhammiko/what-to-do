@@ -7,31 +7,22 @@ class EventGetter
     raise Exceptions::InvalidZip unless valid_zipcode?
   end
 
-    def get_events
-      return unless eventbrite_events.present?
-      eventbrite_events.each do |event|
-        Thread.new { event.load }
-      end
-    end
-
-  private
-
-    def eventbrite_events
-      events = []
-      if raw_events = event_brite_client.events_for(zipcode: zipcode, datetime: datetime) do
-        raw_events.each do |raw_event|
-          events << Event.new(raw_event)
-	end
-      events
+  def get_events
+    events.each do |event|
+      Thread.new { event.load }
     end
   end
 
-    def event_brite_client
-      Client::EventBriteClient.new
-    end
+  private
 
-  def max_events
-    CONFIG['max_events']
+  def events
+    eventbrite_events.map do |event|
+      Event.new(event)
+    end
+  end
+
+  def eventbrite_events
+    EventBriteClient.new.events_for(zipcode: zipcode, datetime: datetime)
   end
 
   def get_date(date_string)
