@@ -3,6 +3,7 @@ class EventsController < ApplicationController
   rescue_from Exceptions::InvalidDate, with: :invalid_date
 
   def index
+    ensure_datetime_present
     persist_session
     @events = EventGetter.new(user_params).get_events
   end
@@ -14,18 +15,18 @@ class EventsController < ApplicationController
   end
 
   def persist_session
-    user_params.each do |key, value|
-      session[key] = value
-    end
-    ensure_datetime_present
+    session = user_params
   end
 
   def ensure_datetime_present
-    if session['datetime'] == ""
-      today = DateTime.now.strftime("%-m/%d")  
+    if params['datetime'] == ""
       session[:datetime] = today
       params[:datetime] = today
     end
+  end
+
+  def today
+      today = DateTime.now.strftime("%-m/%d")  
   end
 
   def invalid_zip
