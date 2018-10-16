@@ -15,7 +15,9 @@ class EventsController < ApplicationController
   end
 
   def persist_session
-    session = user_params
+    user_params.each do |key, value|
+      session[key] = value
+    end
   end
 
   def ensure_datetime_present

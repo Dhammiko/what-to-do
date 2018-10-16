@@ -4,6 +4,7 @@ class EventBriteClient
   def events_for(zipcode:, datetime:)
     @zipcode = zipcode
     @datetime = datetime
+    return [] unless fetch_events['events']
     fetch_events['events'].take(max_events)
   end
 
