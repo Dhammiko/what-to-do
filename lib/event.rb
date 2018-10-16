@@ -25,15 +25,15 @@ class Event
     forecast.forecast
   end
 
-  def rainy_event?
-    forecast.rain?
-  end
-
   def date
     parsed_datetime.strftime(output_date_format)
   end
 
   private
+
+  def rainy_event?
+    forecast.rain?
+  end
 
   def output_date_format
     CONFIG['output_date_format']

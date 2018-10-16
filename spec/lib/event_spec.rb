@@ -60,7 +60,7 @@ describe Event do
 
   describe '#weather_forecast' do
     it 'delegates to the forecast object' do
-      expect(subject.rainy_event?).to be_falsey
+      expect(subject.send(:rainy_event?)).to be_falsey
     end
   end
 
