@@ -21,7 +21,11 @@ class EventsController < ApplicationController
   end
 
   def ensure_datetime_present
-    session['datetime'] = DateTime.now.strftime("%-m/%y") if session['datetime'] == ""
+    if session['datetime'] == ""
+      today = DateTime.now.strftime("%-m/%d")  
+      session[:datetime] = today
+      params[:datetime] = today
+    end
   end
 
   def invalid_zip

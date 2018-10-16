@@ -46,17 +46,26 @@ describe EventsController do
     end
 
     context 'invalid dates' do
-      let(:params) { { 'zipcode' => '12345', 'datetime' => 'pizza' } }
+      let(:params) { { 'zipcode' => zip, 'datetime' => 'pizza' } }
+      let(:today) { DateTime.now.strftime("%-m/%d") }
       before { request.env['HTTP_REFERER'] = referer }
 
-      it 'replaces the datetime with the string "today" if the user left it blank' do
+      it 'sets the session[:datetime] if the user left it blank' do
         allow(EventGetter).to receive(:new).with(anything).and_return(whattodo)
         params['datetime'] = ""
 
         get :index, params
 
-        expect(session['datetime']).to eq(DateTime.now.strftime("%-m/%y"))
+        expect(session[:datetime]).to eq(today)
       end
+
+      it 'sets the params[:datetime] if the user left it blank' do
+        params['datetime'] = ""
+        expect(EventGetter).to receive(:new).with(zipcode: zip, datetime: today).and_return(whattodo)
+
+        get :index, params
+      end
+
 
       it 'sets an error message if InvalidDate is raised' do
         get :index, params

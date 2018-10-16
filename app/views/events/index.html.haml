@@ -4,9 +4,9 @@
   = render partial: 'shared/input_form'
   - if @events.present?
     .results
-      %p displaying #{pluralize(@events.count,"event")} near #{session["zipcode"]} on or after #{session["datetime"]}
+      %p displaying #{pluralize(@events.count,"event")} near #{session[:zipcode]} on or after #{session[:datetime]}
       = render partial: 'event_item', collection: @events, as: :event
   - else
-    %p.ohno did not find events near #{session["zipcode"]} around #{session["datetime"]} that will have clear skies.
+    %p.ohno did not find events near #{session[:zipcode]} around #{session[:datetime]} that will have clear skies.
     
   = render partial: 'shared/footer'
