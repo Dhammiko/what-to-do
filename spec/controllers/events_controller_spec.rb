@@ -31,7 +31,7 @@ describe EventsController do
         expect(flash[:error]).to be_present
       end
 
-      it 'sets an error message if InvalidZip is raised' do
+      it 'redirects us back if InvalidZip is raised' do
         get :index, params
 
         expect(response).to redirect_to(referer)
@@ -48,7 +48,7 @@ describe EventsController do
         expect(flash[:error]).to be_present
       end
 
-      it 'sets an error message if InvalidZip is raised' do
+      it 'redirects us back if InvalidDate is raised' do
         get :index, params: params
 
         expect(response).to redirect_to(referer)
