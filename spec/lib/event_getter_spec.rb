@@ -1,9 +1,10 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-describe WhatToDo::EventGetter do
-  xit 'omg test it all' do
+describe EventGetter do
+  it 'wraps eventbrite events in an event object' do
+  end
+
+  it 'calls .load on each event object' do
   end
 end
  

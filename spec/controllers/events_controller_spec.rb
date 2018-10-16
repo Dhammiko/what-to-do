@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 describe EventsController do
@@ -10,7 +8,7 @@ describe EventsController do
 
     context 'events are found' do
       before do
-        allow(WhatToDo::EventGetter).to receive(:new).with(anything).and_return(whattodo)
+        allow(EventGetter).to receive(:new).with(anything).and_return(whattodo)
         allow(whattodo).to receive_messages(get_events: [event])
       end
 

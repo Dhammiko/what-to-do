@@ -1,9 +1,7 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-describe WhatToDo::Forecast do
-  subject { WhatToDo::Forecast.new(forecast_json: {}.to_json, datetime: DateTime.now) }
+describe Forecast do
+  subject { Forecast.new(forecast_json: {}.to_json, datetime: DateTime.now) }
   describe '#rain?' do
     context "when the forecast contains the string 'rain'" do
       it 'is true' do

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Client::EventBriteClient do
+describe EventBriteClient do
   let(:host) { 'eventbrite' }
   let(:token) { 'foo' }
   let(:json_body) { { events: [] }.to_json }
@@ -13,7 +13,7 @@ describe Client::EventBriteClient do
     stub_request(:get, %r{eventbriteevents/*}).to_return(status: 200, body: json_body, headers: {})
   end
 
-  subject { Client::EventBriteClient.new }
+  subject { EventBriteClient.new }
   context 'fetching event data' do
     let(:zipcode) { 123 }
     let(:events_url) { "#{host}events/search/?token=#{token}&location.address=#{zipcode}&start_date.range_start=#{events_start_date}&start_date.range_end=#{events_end_date}" }

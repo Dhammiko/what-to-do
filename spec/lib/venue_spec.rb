@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-describe WhatToDo::Venue do
+describe Venue do
   let(:latitude) { '3' }
   let(:longitude) { '-7' }
   let(:venue_name) { 'fraggle hall' }
@@ -14,7 +12,7 @@ describe WhatToDo::Venue do
       address: { localized_multi_line_address_display: [venue_address] } }.to_json
   end
 
-  subject { WhatToDo::Venue.new(JSON.parse(venue_json)) }
+  subject { Venue.new(JSON.parse(venue_json)) }
 
   describe '#name' do
     it 'extracts the venue name' do
@@ -31,7 +29,7 @@ describe WhatToDo::Venue do
       parsed_json = JSON.parse(venue_json)
       parsed_json['address']['localized_multi_line_address_display'] = nil
 
-      expect { WhatToDo::Venue.new(parsed_json).address }.to_not raise_error
+      expect { Venue.new(parsed_json).address }.to_not raise_error
     end
   end
 

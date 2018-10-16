@@ -1,27 +1,22 @@
-# frozen_string_literal: true
+class Forecast
+  attr_reader :forecast_json, :datetime
 
-module WhatToDo
-  # an object to hold the weather forecast for a venue at a certain date
-  class Forecast
-    attr_reader :forecast_json, :datetime
+  def initialize(forecast_json:, datetime:)
+    @forecast_json = forecast_json
+    @datetime = datetime
+  end
 
-    def initialize(forecast_json:, datetime:)
-      @forecast_json = forecast_json
-      @datetime = datetime
-    end
+  def rain?
+    !forecast.scan(/rain/i)[0].nil?
+  end
 
-    def rain?
-      !forecast.scan(/rain/i)[0].nil?
-    end
+  def forecast
+    forecast_json['hourly']['data'][hour_of_day]['summary']
+  end
 
-    def forecast
-      forecast_json['hourly']['data'][hour_of_day]['summary']
-    end
+  private
 
-    private
-
-    def hour_of_day
-      DateTime.parse(datetime).strftime('%H').to_i
-    end
+  def hour_of_day
+    DateTime.parse(datetime).strftime('%H').to_i
   end
 end

@@ -1,13 +1,10 @@
-# frozen_string_literal: true
-
-# events controller
 class EventsController < ApplicationController
   rescue_from Exceptions::InvalidZip, with: :invalid_zip
   rescue_from Exceptions::InvalidDate, with: :invalid_date
 
   def index
     persist_session
-    @events = WhatToDo::EventGetter.new(user_params).get_events
+    @events = EventGetter.new(user_params).get_events
   end
 
   private
