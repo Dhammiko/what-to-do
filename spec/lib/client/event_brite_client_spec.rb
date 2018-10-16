@@ -3,7 +3,8 @@ require 'rails_helper'
 describe EventBriteClient do
   let(:host) { 'eventbrite' }
   let(:token) { 'foo' }
-  let(:json_body) { { events: [] }.to_json }
+  let(:json_body) { { events: Array.new(5) {'foo'} }.to_json }
+
   before do
     allow(subject).to receive(:host).and_return(host)
     allow(subject).to receive(:token).and_return(token)
@@ -27,9 +28,8 @@ describe EventBriteClient do
 
       it 'only returns up to max_events worth of events' do
         max_events = 3
-        json_events = {"events" => Array.new(max_events + 1) {'foo'}}
         expect(subject).to receive(:max_events).and_return(max_events)
-        expect(subject).to receive(:fetch_events).and_return(json_events)
+        expect(subject).to receive(:fetch_events).and_return(JSON.parse(json_body))
 
         expect(subject.events_for(zipcode: zipcode, datetime: datetime).count).to eq(max_events)
       end
