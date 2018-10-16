@@ -1,8 +1,6 @@
 class EventBriteClient
   attr_reader :zipcode, :venue_id, :datetime
 
-  def initialize; end
-
   def events_for(zipcode:, datetime:)
     @zipcode = zipcode
     @datetime = datetime
